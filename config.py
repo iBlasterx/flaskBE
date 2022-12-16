@@ -1,0 +1,2 @@
+class Config():
+    SECRET_KEY = "STRING21391283CJ"

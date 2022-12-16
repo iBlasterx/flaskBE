@@ -1,0 +1,32 @@
+header {
+    background-color:rgb(114, 182, 167);
+    padding: 20px 0;
+}
+
+.menuPrincipal, img {
+    width: 940px;
+    position: relative;
+    margin: 0 auto;
+}
+
+nav {
+    position: absolute;
+    top: 80px;
+    right: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img {
+    width:150px;
+    height:150px;
+  }
+
+nav li {
+    display: inline;
+    margin: 0 0 0 20px;
+}
+
+nav a:hover {
+    color:brown;
+    text-decoration: underline;
+}

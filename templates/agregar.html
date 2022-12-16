@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <div>
+                <h1>Registro Vet α1</h1>
+            </div>
+
+            <div class="container">
+                <h5 class="text-center">Nuevo registro</h5>
+            </div>
+
+            <div class="card-body">
+                <form action="/agregar" method="POST">
+                    <label>Nombre del dueño</label>
+                    <input type="text" class="form-control mb-3" name="nombre" required>
+                    <label>DNI</label>
+                    <input type="text" class="form-control mb-3" name="dni">
+                    <label>Nombre de la mascota</label>
+                    <input type="text" class="form-control mb-3" name="mascota">
+                    <label>Fecha de nacimiento</label>
+                    <input type="date" class="form-control mb-3" name="fecha_nacimiento">
+                    <label>Tipo</label>
+                    <input type="text" class="form-control mb-3" name="tipo">
+                    <label>Raza</label>
+                    <input type="text" class="form-control mb-3" name="raza">
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
