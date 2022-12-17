@@ -1,49 +1,50 @@
 {% extends 'base.html' %}
 
-{% block main %}
+  {% block main %}
 
-<div class="container" >
+  <div class="container" >
     <div class="card">
-        <div class="card-header">
-            <h5 class="text-center">Registros</h5>
+      <div class="card-header">
+        <h5 class="text-center">Registros</h5>
+      </div>
+      <div class="card-body text-center">
+        <table class="table mx-auto">
+          <thead>
+            <tr>
+              <th scope="col">Nombre del dueño</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Nombre de la mascota</th>
+              <th scope="col">Fecha de nacimiento</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Raza</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for cliente in clientes %}
+            <form method="post" action="{{ url_for('editar_cliente', id=cliente['_id']) }}">
+              <td><input type="text" value="{{cliente.nombre}}" name="nombre" enable></td>
+              <td><input type="text" value="{{cliente.dni}}" name="dni" enable></td>
+              <td><input type="text" value="{{cliente.mascota}}" name="mascota" enable></td>
+              <td><input type="date" value="{{cliente.fecha_nacimiento}}" name="fecha_nacimiento" enable></td>
+              <td><input type="text" value="{{cliente.tipo}}" name="tipo" enable></td>
+              <td><input type="text" value="{{cliente.raza}}" name="raza" enable></td>
+              <td>
+                <form action="{{ url_for('editar_cliente', id=cliente['_id']) }}" method="POST">
+                  <button class="btn btn-primary btn-sm mt-3" type="submit">Editar</button>
+                  <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
+                </form>
+              </td>
+            </form>
+            {% else %}
+              <tr>
+                <td colspan="7" class="text-center">No se encontró registros</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div> 
     </div>
-<div class="card-body text-center">
-<table class="table mx-auto">
-<thead>
-  <tr>
-    <th scope="col">Nombre del dueño</th>
-    <th scope="col">DNI</th>
-    <th scope="col">Nombre de la mascota</th>
-    <th scope="col">Fecha de nacimiento</th>
-    <th scope="col">Tipo</th>
-    <th scope="col">Raza</th>
-    <th scope="col">Acciones</th>
-  </tr>
-</thead>
-<tbody>
-{% for cliente in clientes %}
-<tr>
-  <td>{{cliente.nombre}}</td>
-  <td>{{cliente.dni}}</td>
-  <td>{{cliente.mascota}}</td>
-  <td>{{cliente.fecha_nacimiento}}</td>
-  <td>{{cliente.tipo}}</td>
-  <td>{{cliente.raza}}</td>
-  <td>
-    <form action="{{ url_for('editar_cliente', id=cliente['_id']) }}" method="POST">
-      <button class="btn btn-primary btn-sm mt-3" type="submit">Editar</button>
-      <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
-    </form>
-  </td>
-</tr>
-{% else %}
-  <tr>
-    <td colspan="7" class="text-center">No se encontró registros</td>
-  </tr>
-{% endfor %}
-</tbody>
-</table>
-</div> 
-</div>
-</div>
+  </div>
 {% endblock %}
