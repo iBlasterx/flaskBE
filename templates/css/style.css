@@ -1,10 +1,11 @@
 header {
-    background-color:rgb(114, 182, 167);
+    background-color:rgb(47, 162, 216);
     padding: 20px 0;
 }
 
 .menuPrincipal, img {
     width: 940px;
+    background-color: antiquewhite;
     position: relative;
     margin: 0 auto;
 }
@@ -29,4 +30,9 @@ nav li {
 nav a:hover {
     color:brown;
     text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
 }
