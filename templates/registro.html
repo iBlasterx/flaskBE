@@ -23,18 +23,16 @@
 
           <tbody>
             {% for cliente in clientes %}
-            <form method="post" action="{{ url_for('editar_cliente', id=cliente['_id']) }}">
-              <td><input type="text" value="{{cliente.nombre}}" name="nombre" enable></td>
-              <td><input type="text" value="{{cliente.dni}}" name="dni" enable></td>
-              <td><input type="text" value="{{cliente.mascota}}" name="mascota" enable></td>
-              <td><input type="date" value="{{cliente.fecha_nacimiento}}" name="fecha_nacimiento" enable></td>
-              <td><input type="text" value="{{cliente.tipo}}" name="tipo" enable></td>
-              <td><input type="text" value="{{cliente.raza}}" name="raza" enable></td>
+            <form method="post" action="{{ url_for('editar_cliente', id=cliente['_id']) }}" id="formulario">
+              <td><input type="text" value="{{cliente.nombre}}" name="nombre" id="nombre" disabled></td>
+              <td><input type="text" value="{{cliente.dni}}" name="dni" id="dni" disabled></td>
+              <td><input type="text" value="{{cliente.mascota}}" name="mascota" id="mascota" disabled></td>
+              <td><input type="date" value="{{cliente.fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" disabled></td>
+              <td><input type="text" value="{{cliente.tipo}}" name="tipo" id="tipo" disabled></td>
+              <td><input type="text" value="{{cliente.raza}}" name="raza" id="raza" disabled></td>
               <td>
-                <form action="{{ url_for('editar_cliente', id=cliente['_id']) }}" method="POST">
-                  <button class="btn btn-primary btn-sm mt-3" type="submit">Editar</button>
-                  <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
-                </form>
+                <button class="btn btn-primary btn-sm mt-3" id="editar-button" type="button">Editar</button>
+                <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
               </td>
             </form>
             {% else %}
@@ -47,4 +45,20 @@
       </div> 
     </div>
   </div>
+  <script>
+    var editarButton = document.getElementById('editar-button');
+    var formulario = document.getElementById('formulario');
+    var inputs = document.getElementsByTagName('input');
+  
+    editarButton.addEventListener('click', function() {
+      if (editarButton.innerHTML === 'Editar') {
+        editarButton.innerHTML = 'Guardar';
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = false;
+        }
+      } else {
+        formulario.submit();
+      }
+    });
+  </script>
 {% endblock %}
