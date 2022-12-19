@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_wtf import CSRFProtect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-#from forms import RegistroVeterinaria
+from forms import RegistroVeterinaria
 from config import Config
 
 app = Flask(__name__)
@@ -26,6 +26,7 @@ def clientes():
 def nuevo():
     return render_template("agregar.html")
 
+# FORMS: no guarda los datos en la db.
 '''
 @app.route("/guardar/", methods=['GET', 'POST'])
 def agregar2():
@@ -68,6 +69,7 @@ def agregar():
         return redirect(url_for("clientes"))
     else:
         return notFound()
+
 
 @app.route("/clientes/<id>/borrar", methods=("GET", "POST"))
 def borrar_cliente(id):

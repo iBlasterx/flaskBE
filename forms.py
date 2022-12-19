@@ -1,3 +1,5 @@
+# APP: No guarda los datos en la db.
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, DateField, SubmitField
 from wtforms.validators import DataRequired
