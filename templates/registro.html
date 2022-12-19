@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
   {% block main %}
 
-  <div class="container" >
+  <div class="container">
     <div class="card">
       <div class="card-header">
         <h5 class="text-center">Registros</h5>
@@ -23,18 +23,21 @@
 
           <tbody>
             {% for cliente in clientes %}
-            <form method="post" action="{{ url_for('editar_cliente', id=cliente['_id']) }}" id="formulario">
-              <td><input type="text" value="{{cliente.nombre}}" name="nombre" id="nombre" disabled></td>
-              <td><input type="text" value="{{cliente.dni}}" name="dni" id="dni" disabled></td>
-              <td><input type="text" value="{{cliente.mascota}}" name="mascota" id="mascota" disabled></td>
-              <td><input type="date" value="{{cliente.fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" disabled></td>
-              <td><input type="text" value="{{cliente.tipo}}" name="tipo" id="tipo" disabled></td>
-              <td><input type="text" value="{{cliente.raza}}" name="raza" id="raza" disabled></td>
-              <td>
-                <button class="btn btn-primary btn-sm mt-3" id="editar-button" type="button">Editar</button>
-                <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
-              </td>
-            </form>
+            <tr>
+              <form method="post" action="{{ url_for('editar_cliente', id=cliente['_id']) }}" id="formulario">
+                <td><input type="text" value="{{cliente.nombre}}" name="nombre" id="nombre" disabled></td>
+                <td><input type="text" value="{{cliente.dni}}" name="dni" id="dni" disabled></td>
+                <td><input type="text" value="{{cliente.mascota}}" name="mascota" id="mascota" disabled></td>
+                <td><input type="date" value="{{cliente.fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" disabled></td>
+                <td><input type="text" value="{{cliente.tipo}}" name="tipo" id="tipo" disabled></td>
+                <td><input type="text" value="{{cliente.raza}}" name="raza" id="raza" disabled></td>
+                <td>
+                  <button class="btn btn-primary btn-sm mt-3" id="editar" type="button">Editar</button>
+                  <button class="btn btn-success btn-sm mt-3" id="guardar" type="submit" style="display: none">Guardar</button>
+                  <a href="{{ url_for('borrar_cliente', id=cliente['_id']) }}" class="btn btn-danger btn-sm mt-3" formmethod="POST">Eliminar</a>
+                </td>
+              </form>
+            </tr>
             {% else %}
               <tr>
                 <td colspan="7" class="text-center">No se encontró registros</td>
@@ -45,20 +48,25 @@
       </div> 
     </div>
   </div>
-  <script>
-    var editarButton = document.getElementById('editar-button');
-    var formulario = document.getElementById('formulario');
-    var inputs = document.getElementsByTagName('input');
   
-    editarButton.addEventListener('click', function() {
-      if (editarButton.innerHTML === 'Editar') {
-        editarButton.innerHTML = 'Guardar';
-        for (var i = 0; i < inputs.length; i++) {
-          inputs[i].disabled = false;
-        }
-      } else {
-        formulario.submit();
-      }
+  <script>
+    var btnEditar = document.querySelectorAll(".btn-primary");
+    
+    btnEditar.forEach(function(boton) {
+      boton.addEventListener("click", function() {
+    
+        var formulario = this.parentNode.parentNode;
+    
+        formulario.querySelector("#nombre").disabled = false;
+        formulario.querySelector("#dni").disabled = false;
+        formulario.querySelector("#mascota").disabled = false;
+        formulario.querySelector("#fecha_nacimiento").disabled = false;
+        formulario.querySelector("#tipo").disabled = false;
+        formulario.querySelector("#raza").disabled = false;
+        formulario.querySelector(".btn-success").style.display = "inline-block";
+    
+        this.style.display = "none";
+      });
     });
   </script>
 {% endblock %}
