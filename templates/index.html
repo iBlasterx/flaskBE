@@ -12,13 +12,14 @@
     </head>
 
     <main>
-        <header class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
+        <header class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+              <div class="container">
+                <a class="navbar-brand" href="#">
                 <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
             </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav navbar-right">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="../">Inicio</a>
                 </li>
@@ -29,17 +30,19 @@
                         <a class="nav-link" href="../nuevo/">Nuevo Registro</a>
                 </li>
                 </ul>
+                <a class="navbar-btn btn btn-sm btn-primary lift ms-auto">Logueate</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             </nav>
+          </div>
         </header>
         {% block main %}
         {% endblock %}
     </main>
 
-    <footer class="bg-secondary text-white py-3">
+    <footer class="bg-secondary text-white py-5">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-auto">
