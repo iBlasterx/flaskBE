@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro Veterinario 1.0</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        {% block head %}
-        {% endblock %}
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Veterinario 1.0</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% block head %}
+    {% endblock %}
+  </head>
 
-    <main>
-        <header class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
-              <div class="container">
-                <a class="navbar-brand" href="#">
-                <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ms-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../clientes/">Listar</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="../nuevo/">Nuevo Registro</a>
-                </li>
-                </ul>
-                <a class="navbar-btn btn btn-sm btn-primary lift ms-auto">Logueate</a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            </nav>
-          </div>
-        </header>
-        {% block main %}
-        {% endblock %}
-    </main>
-
-    <footer class="bg-secondary text-white py-5">
+  <main>
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-auto">
-              <img src="https://uploads-ssl.webflow.com/6320941e9612f79b0e2f61b1/63209670562cf7eb6f31131a_silabuz-logo-rebrand-standar.png" alt="Logo" class="img-fluid">
-            </div>
+          <a class="navbar-brand" href="#">
+            <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
+          </a>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../clientes/">Listar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../nuevo/">Nuevo Registro</a>
+            </li>
+            </ul>
           </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+    {% block main %}
+    {% endblock %}
+  </main>
+
+  <footer class="bg-secondary text-white py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <img src="https://uploads-ssl.webflow.com/6320941e9612f79b0e2f61b1/63209670562cf7eb6f31131a_silabuz-logo-rebrand-standar.png" alt="Logo" class="img-fluid">
           <div class="row justify-content-center mt-3">
             <div class="col-auto">
               <p>&copy; Proyecto Flask + mongoDB</p>
             </div>
-          </div>
+          </div>      
         </div>
-      </footer>
-      {% block footer %}
-      {% endblock %}
+      </div>
+    </div>
+    {% block footer %}
+    {% endblock %}
+  </footer>
 </html>

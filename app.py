@@ -3,7 +3,7 @@ from flask_wtf import CSRFProtect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-from forms import RegistroVeterinaria
+#from forms import RegistroVeterinaria
 from config import Config
 
 app = Flask(__name__)
@@ -70,6 +70,15 @@ def agregar():
     else:
         return notFound()
 
+'''
+@app.route("/busqueda/", methods=['GET', 'POST'])
+def busqueda():
+    valor1 = request.form["test"]
+    valor2 = request.form["test2"]
+    clientes = list(clientes_collection.find({nombre: valor}))
+    clientes = [clientes for clientes in clientes_collection]
+    return render_template('search.html', clientes=clientes)
+'''
 
 @app.route("/clientes/<id>/borrar", methods=("GET", "POST"))
 def borrar_cliente(id):
