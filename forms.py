@@ -25,6 +25,7 @@ class SignupForm(FlaskForm):
 class SearchForm(FlaskForm):
     term_busqueda = StringField('Ingrese valor', validators=[DataRequired()])
     busqueda_select = SelectField('Opción', choices=[
+        (None, '* Seleccione una opción *'),
         ('nombre', 'Dueño'), 
         ('dni', 'DNI'), 
         ('mascota', 'Mascota'), 

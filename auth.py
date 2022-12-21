@@ -17,7 +17,7 @@ def signup():
             user = Users(username=form.username.data.lower())
             user.set_password(form.password.data)
             user.save()
-            return redirect(url_for('login'))
+            return redirect(url_for('auth_bp.login'))
     return render_template("signup.html", form=form)
 
 @auth_bp.route("/auth/login", methods=['GET', 'POST'])
