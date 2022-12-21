@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from flask_login import LoginManager
+from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
+from flask_login import LoginManager, login_required
 from flask_wtf import CSRFProtect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -14,6 +14,7 @@ app.config.from_object(Config)
 client = MongoClient('localhost', 27017)
 db = client["veterinaria"]
 clientes_collection = db["clientes"]
+
 csrf = CSRFProtect()
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -23,16 +24,23 @@ app.register_blueprint(auth_bp)
 def load_user(user_id):
     return Users.objects(id=user_id).first()
 
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    flash("Necesitas iniciar sesión para hacer eso.")
+    return redirect(url_for('auth_bp.login'))
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
 @app.route("/clientes/", methods=['GET', 'POST'])
+@login_required
 def clientes():
     clientes = list(clientes_collection.find())
     return render_template("registro.html", clientes=clientes)
 
 @app.route("/nuevo/", methods=['GET', 'POST'])
+@login_required
 def nuevo():
     return render_template("agregar.html")
 
@@ -76,6 +84,7 @@ def agregar():
                 "raza" : request.form["raza"],
                 }
             )
+        flash("¡Registro creado con éxito!")
         return redirect(url_for("clientes"))
     else:
         return notFound()
@@ -91,11 +100,14 @@ def busqueda():
 '''
 
 @app.route("/clientes/<id>/borrar", methods=("GET", "POST"))
+@login_required
 def borrar_cliente(id):
     clientes_collection.delete_one({"_id": ObjectId(id)})
+    flash("El registro seleccionado ha sido borrado.")
     return redirect(url_for("clientes"))
 
 @app.route("/clientes/<id>/editar", methods=("POST",))
+@login_required
 def editar_cliente(id):
     clientes_collection.find_one({"_id": ObjectId(id)})
     if request.method == "POST":
@@ -112,6 +124,7 @@ def editar_cliente(id):
                     }
                 },
         )
+        flash("Registro editado.")
         return redirect(url_for("clientes"))
     else:
         return notFound()

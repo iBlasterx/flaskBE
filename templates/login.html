@@ -3,6 +3,12 @@
 {% block main %}
 
 <form method="POST">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-primary" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+
     {{ form.hidden_tag() }}
     {{ form.username.label }}<br>
     {{ form.username }} <br>
@@ -10,5 +16,4 @@
     {{ form.password }} <br>
     {{ form.submit }} <br>
 </form>
-
 {% endblock %}

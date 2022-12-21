@@ -3,6 +3,11 @@
   {% block main %}
 
   <div class="container overflow-hidden text-center">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-primary" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
     <div class="card text-center">
       <div class="card-header">
         <h5 class="text-center">Registros</h5>
