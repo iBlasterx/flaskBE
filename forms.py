@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, SubmitField, PasswordField
+from wtforms import StringField, DateField, SubmitField, PasswordField, SelectField
 from wtforms.validators import DataRequired
 
-# APP: No guarda los datos en la db.
+# Testing
 class RegistroVeterinaria(FlaskForm):
     propietario = StringField('Nombre de usuario', validators=[DataRequired()])
     dni = StringField('DNI', validators=[DataRequired()])
@@ -21,3 +21,13 @@ class SignupForm(FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     submit = SubmitField('Enviar')
+
+class SearchForm(FlaskForm):
+    term_busqueda = StringField('Ingrese valor', validators=[DataRequired()])
+    busqueda_select = SelectField('Opción', choices=[
+        ('nombre', 'Dueño'), 
+        ('dni', 'DNI'), 
+        ('mascota', 'Mascota'), 
+        ('fecha_nacimiento', 'Nacimiento'), 
+        ('tipo', 'Tipo'), 
+        ('raza', 'Raza')])

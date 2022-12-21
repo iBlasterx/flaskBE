@@ -31,16 +31,27 @@
         </label>
         <nav>
           <ul>
-          <li><a href="../"></i>Home</a></li>
-          <li><a href="../clientes/"><i class="icon-thumbs-up-alt"></i>Lista de Clientes</a></li>
-          <li><a href="../nuevo/"><i class="icon-thumbs-up-alt"></i>Nuevo Registro</a></li>
-          <li>{% if current_user.is_authenticated %}
-            Bienvenido, {{ current_user.username }}
-            <a href="{{ url_for('auth_bp.logout') }}">Cerrar sesión</a>
-          {% else %}
-            <a href="{{ url_for('auth_bp.login') }}">Iniciar sesión</a>
-          {% endif %}</li>
-          </ul>
+            <li>
+              <a href="../"></i>Home</a>
+            </li>
+            <li>
+              <a href="../clientes/"><i class="icon-thumbs-up-alt"></i>Lista de Clientes</a>
+            </li>
+            <li>
+              <a href="../busqueda/"><i class="icon-thumbs-up-alt"></i>Búsqueda</a>
+            </li>
+            <li>
+              <a href="../nuevo/"><i class="icon-thumbs-up-alt"></i>Nuevo Registro</a>
+            </li>
+            {% if current_user.is_authenticated %}
+              <li>Bienvenido, {{ current_user.username }}</li>
+              <a href="{{ url_for('auth_bp.logout') }}">Cerrar sesión</a>
+            {% else %}
+              <li>
+                <i class="icon-thumbs-up-alt"></i><a href="{{ url_for('auth_bp.login') }}">Login</a>
+              </li>
+            {% endif %}
+            </ul>
         </nav>
       </section>
     </header>

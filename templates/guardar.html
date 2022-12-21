@@ -1,8 +1,9 @@
-<!-- APP + FORMS: no guarda los datos en la db. -->
+<!-- Testing -->
 
 <!DOCTYPE html>
 <body>
   <form method="POST">
+        {{ form.csrf_token }}
         {{ form.propietario.label }} 
         {{ form.propietario }}
         {{ form.dni.label }} 

@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block main %}
+  <div class="container">
+  <h1>Búsqueda en Registro</h1>
+    <form action="/busqueda" method="post">
+      {{ form.csrf_token }}
+      {{ form.term_busqueda(placeholder="Búsqueda") }}
+      {{ form.busqueda_select }}
+      <input type="submit" value="Buscar">
+    </form>
+    {% if resultados %}
+      <tr>
+        {% for resultado in resultados %}
+          <td>{{ resultado.nombre }}</td>
+          <td>{{ resultado.dni }}</td>
+          <td>{{ resultado.mascota }}</td>
+          <td>{{ resultado.fecha_nacimiento }}</td>
+          <td>{{ resultado.tipo }}</td>
+          <td>{{ resultado.raza }}</td>          
+        {% endfor %}
+      </tr>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -3,8 +3,9 @@ from flask_login import LoginManager, login_required
 from flask_wtf import CSRFProtect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import datetime
 
-#from forms import RegistroVeterinaria
+from forms import SearchForm, RegistroVeterinaria
 from models import Users
 from config import Config
 from auth import auth_bp
@@ -44,9 +45,8 @@ def clientes():
 def nuevo():
     return render_template("agregar.html")
 
-# FORMS: no guarda los datos en la db.
-'''
-@app.route("/guardar/", methods=['GET', 'POST'])
+# Testing
+@app.route("/guardar2/", methods=['GET', 'POST'])
 def agregar2():
     form = RegistroVeterinaria()
     if request.method == 'POST' and form.validate_on_submit():
@@ -54,7 +54,7 @@ def agregar2():
         nombre = form.propietario.data
         dni = form.dni.data
         mascota = form.mascota.data
-        fecha_nacimiento = form.mascota_nac.data
+        fecha_nacimiento = datetime.datetime.fromordinal(form.mascota_nac.data.toordinal())
         tipo = form.tipo.data
         raza = form.raza.data
 
@@ -69,7 +69,7 @@ def agregar2():
                     }
             )
     return render_template("guardar.html", form=form)
-'''
+
 
 @app.route("/agregar/", methods=("POST",))
 def agregar():
@@ -89,15 +89,26 @@ def agregar():
     else:
         return notFound()
 
-'''
 @app.route("/busqueda/", methods=['GET', 'POST'])
 def busqueda():
-    valor1 = request.form["test"]
-    valor2 = request.form["test2"]
-    clientes = list(clientes_collection.find({nombre: valor}))
-    clientes = [clientes for clientes in clientes_collection]
-    return render_template('search.html', clientes=clientes)
-'''
+    form = SearchForm()
+    resultados = []
+    if form.validate_on_submit():
+        term_busqueda = form.term_busqueda.data
+        busqueda_select = form.busqueda_select.data
+        if busqueda_select == 'nombre':
+            resultados = clientes_collection.find({'nombre': {'$regex': term_busqueda}})
+        if busqueda_select == 'dni':
+            resultados = clientes_collection.find({'dni': {'$regex': term_busqueda}})
+        if busqueda_select == 'mascota':
+            resultados = clientes_collection.find({'mascota': {'$regex': term_busqueda}})
+        if busqueda_select == 'fecha_nacimiento':
+            resultados = clientes_collection.find({'fecha_nacimiento': {'$regex': term_busqueda}})
+        if busqueda_select == 'tipo':
+            resultados = clientes_collection.find({'tipo': {'$regex': term_busqueda}})
+        elif busqueda_select == 'raza':
+            resultados = clientes_collection.find({'raza': {'$regex': term_busqueda}})
+    return render_template('busqueda.html', form=form, resultados=resultados)
 
 @app.route("/clientes/<id>/borrar", methods=("GET", "POST"))
 @login_required
