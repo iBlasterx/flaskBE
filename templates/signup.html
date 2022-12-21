@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block main %}
+<div class="container overflow-hidden text-center">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}<br>
+        {{ form.username }} <br>
+        {{ form.password.label }}<br>
+        {{ form.password }} <br>
+        {{ form.submit }} <br>
+    </form>
+</div>
+{% endblock %}

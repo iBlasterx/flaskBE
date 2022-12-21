@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_login import LoginManager
 from flask_wtf import CSRFProtect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 #from forms import RegistroVeterinaria
+from models import Users
 from config import Config
+from auth import auth_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,6 +15,13 @@ client = MongoClient('localhost', 27017)
 db = client["veterinaria"]
 clientes_collection = db["clientes"]
 csrf = CSRFProtect()
+login_manager = LoginManager()
+login_manager.init_app(app)
+app.register_blueprint(auth_bp)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.objects(id=user_id).first()
 
 @app.route("/")
 def home():
