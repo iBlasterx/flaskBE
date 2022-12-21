@@ -6,7 +6,7 @@ from models import Users
 
 auth_bp = Blueprint('auth_bp', __name__)
 
-@auth_bp.route("/signup", methods=['GET', 'POST'])
+@auth_bp.route("/auth/signup", methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for("home", nombre=current_user.username))
@@ -20,8 +20,7 @@ def signup():
             return redirect(url_for('login'))
     return render_template("signup.html", form=form)
 
-
-@auth_bp.route("/login", methods=['GET', 'POST'])
+@auth_bp.route("/auth/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for("home", nombre=current_user.username))
