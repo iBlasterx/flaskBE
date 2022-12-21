@@ -5,38 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Veterinario 1.0</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap" rel="stylesheet">
     {% block head %}
     {% endblock %}
   </head>
 
   <main>
-    <header class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-          <a class="navbar-brand" href="../">
-            <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ms-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="../">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../clientes/">Listar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../nuevo/">Nuevo Registro</a>
-            </li>
-            </ul>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
+    <header>
+      <section>
+        <a class="navbar-brand" href="../">
+          <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
+        </a>
+        <label for="toggle-1" class="toggle-menu">
+          <ul>
+            <li></li> 
+            <li></li> 
+            <li></li>
+          </ul>
+        </label>
+        <nav>
+          <ul>
+          <li><a href="../"></i>Home</a></li>
+          <li><a href="../clientes/"><i class="icon-thumbs-up-alt"></i>Lista de Clientes</a></li>
+          <li><a href="../nuevo/"><i class="icon-thumbs-up-alt"></i>Nuevo Registro</a></li>
+          <li>{% if current_user.is_authenticated %}
+            Bienvenido, {{ current_user.username }}
+            <a href="{{ url_for('auth_bp.logout') }}">Cerrar sesión</a>
+          {% else %}
+            <a href="{{ url_for('auth_bp.login') }}">Iniciar sesión</a>
+          {% endif %}</li>
+          </ul>
+        </nav>
+      </section>
     </header>
     {% block main %}
     {% endblock %}
