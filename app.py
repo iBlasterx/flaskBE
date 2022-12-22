@@ -54,7 +54,7 @@ def agregar2():
         nombre = form.propietario.data
         dni = form.dni.data
         mascota = form.mascota.data
-        fecha_nacimiento = datetime.datetime.fromordinal(form.mascota_nac.data.toordinal())
+        #fecha_nacimiento = datetime.datetime.fromordinal(form.mascota_nac.data.toordinal())
         tipo = form.tipo.data
         raza = form.raza.data
 
@@ -63,13 +63,12 @@ def agregar2():
                         "nombre": nombre,
                         "dni" : dni,
                         "mascota" : mascota,
-                        "fecha_nacimiento" : fecha_nacimiento,
+                        #fecha_nacimiento" : fecha_nacimiento,
                         "tipo" : tipo,
                         "raza" : raza,
                     }
             )
     return render_template("guardar.html", form=form)
-
 
 @app.route("/agregar/", methods=("POST",))
 def agregar():

@@ -35,7 +35,6 @@ def login():
             return redirect(url_for("home", nombre=user.username))
     return render_template("login.html", form=form)
 
-
 @auth_bp.route("/logout")
 @login_required
 def logout():

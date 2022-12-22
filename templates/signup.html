@@ -1,14 +1,30 @@
 {% extends 'index.html' %}
 
 {% block main %}
-<div class="container overflow-hidden text-center">
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.username.label }}<br>
-        {{ form.username }} <br>
-        {{ form.password.label }}<br>
-        {{ form.password }} <br>
-        {{ form.submit }} <br>
-    </form>
-</div>
+<section>
+    <div class="container overflow-hidden text-center">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-primary" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <h3>Crear nuevo usuario</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.username.label }}
+            {{ form.username }}
+            {{ form.password.label }}
+            {{ form.password }}
+            {{ form.password_confirm.label }}
+            {{ form.password_confirm }}
+            {{ form.submit }}
+        </form>
+    </div>
+</section>
 {% endblock %}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Veterinario 1.0</title>
+    <title>Registro Veterinario | Proyecto</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
@@ -16,7 +16,7 @@
     {% endblock %}
   </head>
 
-  <body>
+  <main>
     <header>
       <section>
         <a class="navbar-brand" href="../">
@@ -57,18 +57,22 @@
     </header>
     {% block main %}
     {% endblock %}
-  </body>
+  </main>
 
   <footer class="bg-secondary text-white py-5">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-auto">
-          <img src="https://uploads-ssl.webflow.com/6320941e9612f79b0e2f61b1/63209670562cf7eb6f31131a_silabuz-logo-rebrand-standar.png" alt="Logo" class="img-fluid">
+          <img src="https://uploads-ssl.webflow.com/6320941e9612f79b0e2f61b1/63209670562cf7eb6f31131a_silabuz-logo-rebrand-standar.png" alt="Logo">
           <div class="row justify-content-center mt-3">
             <div class="col-auto">
               <p>&copy; Proyecto Flask + mongoDB</p>
+              <p>Elaboración: Crhistian Angeles</p>
+              <a href="https://github.com/iBlasterx" alt="Perfil personal GitHub">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" width="20" height="20">
+              </a>
             </div>
-          </div>      
+          </div>
         </div>
       </div>
     </div>

@@ -1,43 +1,45 @@
 {% extends 'index.html' %}
 
 {% block main %}
-<div class="container text-center">
-  <h3 class="mx-auto my-4">Búsqueda en Registro</h3>
-  <form action="/busqueda" method="POST" class="form-inline mx-auto">
-    {{ form.csrf_token }}
-    {{ form.term_busqueda(placeholder="Ingrese el valor a buscar", class="form-control w-50 mx-auto") }}
-    {{ form.busqueda_select(class="form-select my-3 w-50 mx-auto") }}
-    <input type="submit" value="Buscar" class="btn btn-lg btn-success">
-  </form>
+  <section>
+    <div class="container text-center">
+      <h3 class="mx-auto my-4">Búsqueda en Registro</h3>
+      <form action="/busqueda" method="POST" class="form-inline mx-auto">
+        {{ form.csrf_token }}
+        {{ form.term_busqueda(placeholder="Ingrese el valor a buscar", class="form-control w-50 mx-auto") }}
+        {{ form.busqueda_select(class="form-select my-3 w-50 mx-auto") }}
+        <input type="submit" value="Buscar" class="btn btn-lg btn-success">
+      </form>
 
-  {% if resultados %}
-  <h5 class="mx-auto my-4">Resultados</h5>
-    <table class="table table-hover table-bordered mx-auto my-4">
-      <thead class="thead-dark">
-        <tr class="table-success">
-          <th class="h6" scope="col">Dueño</th>
-          <th class="h6" scope="col">DNI</th>
-          <th class="h6" scope="col">Mascota</th>
-          <th class="h6" scope="col">Nacimiento</th>
-          <th class="h6" scope="col">Tipo</th>
-          <th class="h6" scope="col">Raza</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for resultado in resultados %}
-          <tr>
-            <td>{{ resultado.nombre }}</td>
-            <td>{{ resultado.dni }}</td>
-            <td>{{ resultado.mascota }}</td>
-            <td>{{ resultado.fecha_nacimiento }}</td>
-            <td>{{ resultado.tipo }}</td>
-            <td>{{ resultado.raza }}</td>
-          </tr>
-          {% else %}
-            <td colspan="7" class="text-center">No se encontró información: intente de nuevo con otro valor.</td>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% endif %}
-</div>
+      {% if resultados %}
+      <h5 class="mx-auto my-4">Resultados</h5>
+        <table class="table table-hover table-bordered mx-auto my-4">
+          <thead class="thead-dark">
+            <tr class="table-success">
+              <th class="h6" scope="col">Dueño</th>
+              <th class="h6" scope="col">DNI</th>
+              <th class="h6" scope="col">Mascota</th>
+              <th class="h6" scope="col">Nacimiento</th>
+              <th class="h6" scope="col">Tipo</th>
+              <th class="h6" scope="col">Raza</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for resultado in resultados %}
+              <tr>
+                <td>{{ resultado.nombre }}</td>
+                <td>{{ resultado.dni }}</td>
+                <td>{{ resultado.mascota }}</td>
+                <td>{{ resultado.fecha_nacimiento }}</td>
+                <td>{{ resultado.tipo }}</td>
+                <td>{{ resultado.raza }}</td>
+              </tr>
+              {% else %}
+                <td colspan="7" class="text-center">No se encontró información: intente de nuevo con otro valor.</td>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+    </div>
+  </section>
 {% endblock %}
