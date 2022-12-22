@@ -1,29 +1,42 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block main %}
 <section>
     <div class="container overflow-hidden text-center">
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-primary" role="alert">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-primary" role="alert">
+          {{ message }}
+      </div>
+      {% endfor %}
 
         <h3>Crear nuevo usuario</h3>
-        <form method="POST">
-            {{ form.hidden_tag() }}
 
-            {{ form.username.label }}
-            {{ form.username }}
-            {{ form.password.label }}
-            {{ form.password }}
-            {{ form.password_confirm.label }}
-            {{ form.password_confirm }}
-            {{ form.submit }}
+        <div class="container text-center my-4">
+        <form method="POST" class="form-inline mx-auto">
+          {{ form.hidden_tag() }}
+
+          <div class="form-outline mb-3">
+            <label class="form-label" for="form3Example4">{{ form.username.label }}</label>
+            {{ form.username(placeholder="Ingrese un nombre de usuario", class="form-control w-50 mx-auto") }}
+          </div>
+
+          <div class="form-outline mb-3">
+            <label class="form-label" for="form3Example4">{{ form.password.label }}</label>
+            {{ form.password(placeholder="Ingrese una contraseña", class="form-control w-50 mx-auto") }}
+          </div>
+
+          <div class="form-outline mb-3">
+            <label class="form-label" for="form3Example4">{{ form.password_confirm.label }}</label>
+            {{ form.password_confirm(placeholder="Reconfirme la contraseña", class="form-control w-50 mx-auto") }}
+          </div>
+            
+          <div class="d-flex justify-content-center align-items-center mx-auto">    
+            <div class="text-center text-lg-start mt-1 pt-1">
+                {{ form.submit(class="btn btn-lg btn-success", style="padding-left: 2.5rem; padding-right: 2.5rem;") }}
+            </div>
+          </div>
+        </div>
         </form>
     </div>
 </section>

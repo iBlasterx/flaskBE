@@ -16,7 +16,11 @@ def signup():
             user = Users(username=form.username.data.lower())
             user.set_password(form.password.data)
             user.save()
+            flash("Usuario registrado con éxito")
             return redirect(url_for('home'))
+        if existing_user is not None:
+            flash("Ya existe un usuario registrado con ese nombre")
+            return redirect(url_for('auth_bp.signup'))
     return render_template("signup.html", form=form)
 
 @auth_bp.route("/auth/login", methods=['GET', 'POST'])

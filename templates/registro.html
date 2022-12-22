@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block main %}
   <section>
@@ -8,6 +8,13 @@
           {{ message }}
       </div>
       {% endfor %}
+
+      <form action="/ordenar_registro" method="POST" class="form-inline mx-auto">
+        {{ form.hidden_tag() }}
+        {{ form.criterio_select }}
+        {{ form.submit }}
+      </form>
+
       <div class="card text-center">
         <div class="card-header">
           <h5 class="text-center">Registro de Mascotas</h5>
@@ -45,7 +52,7 @@
               </tr>
               {% else %}
                 <tr>
-                  <td colspan="7" class="text-center">No se encontró registros</td>
+                  <td colspan="7" class="text-center">No se encontró mascotas registradas.</td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -54,25 +61,4 @@
       </div>
     </div>
   </section>
-  
-  <script>
-    var btnEditar = document.querySelectorAll(".btn-primary");
-    
-    btnEditar.forEach(function(boton) {
-      boton.addEventListener("click", function() {
-    
-        var formulario = this.parentNode.parentNode;
-    
-        formulario.querySelector("#nombre").disabled = false;
-        formulario.querySelector("#dni").disabled = false;
-        formulario.querySelector("#mascota").disabled = false;
-        formulario.querySelector("#fecha_nacimiento").disabled = false;
-        formulario.querySelector("#tipo").disabled = false;
-        formulario.querySelector("#raza").disabled = false;
-        formulario.querySelector(".btn-success").style.display = "inline-block";
-    
-        this.style.display = "none";
-      });
-    });
-  </script>
 {% endblock %}

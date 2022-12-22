@@ -29,11 +29,22 @@ class SignupForm(FlaskForm):
             flash('Las contraseñas no coinciden')
             raise ValidationError('Las contraseñas no coinciden')
 
+class OrdenarRegistro(FlaskForm):
+    submit = SubmitField('Ordenar')
+    criterio_select = SelectField ('Opción', choices=[
+        (None, '* Seleccione una opción *'),
+        ('nombre', 'Nombre del dueño'), 
+        ('dni', 'DNI'), 
+        ('mascota', 'Mascota'), 
+        ('fecha_nacimiento', 'Nacimiento'), 
+        ('tipo', 'Tipo'), 
+        ('raza', 'Raza')])
+
 class SearchForm(FlaskForm):
     term_busqueda = StringField('Ingrese valor', validators=[DataRequired()])
     busqueda_select = SelectField('Opción', choices=[
         (None, '* Seleccione una opción *'),
-        ('nombre', 'Dueño'), 
+        ('nombre', 'Nombre del dueño'), 
         ('dni', 'DNI'), 
         ('mascota', 'Mascota'), 
         ('fecha_nacimiento', 'Nacimiento'), 
