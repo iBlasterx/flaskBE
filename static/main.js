@@ -19,7 +19,6 @@ window.onload = function() {
     });
 }
 
-
 function ordenarRegistro() {
     $(document).ready(function() {
     $('#ordenar-form').submit(function(event) {

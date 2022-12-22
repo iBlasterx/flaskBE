@@ -32,7 +32,7 @@ class SignupForm(FlaskForm):
 class OrdenarRegistro(FlaskForm):
     submit = SubmitField('Ordenar')
     criterio_select = SelectField ('Opción', choices=[
-        (None, '* Seleccione una opción *'),
+        (None, '▸ Ordenar por ◂'),
         ('nombre', 'Nombre del dueño'), 
         ('dni', 'DNI'), 
         ('mascota', 'Mascota'), 
@@ -41,9 +41,10 @@ class OrdenarRegistro(FlaskForm):
         ('raza', 'Raza')])
 
 class SearchForm(FlaskForm):
+    submit = SubmitField('Buscar')
     term_busqueda = StringField('Ingrese valor', validators=[DataRequired()])
     busqueda_select = SelectField('Opción', choices=[
-        (None, '* Seleccione una opción *'),
+        (None, '▸ Criterio ◂'),
         ('nombre', 'Nombre del dueño'), 
         ('dni', 'DNI'), 
         ('mascota', 'Mascota'), 

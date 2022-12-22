@@ -9,12 +9,17 @@
       </div>
       {% endfor %}
 
-      <form action="/ordenar_registro" method="POST" class="form-inline mx-auto">
-        {{ form.hidden_tag() }}
-        {{ form.criterio_select }}
-        {{ form.submit }}
-      </form>
-
+      <div style="width: 125%" class="d-flex justify-content-between"> 
+        <form action="/ordenar_registro" method="POST" class="form-inline form-left my-3 w-100">
+          {{ form.hidden_tag() }}
+          <div class="form-group d-flex align-items-center">
+            {{ form.criterio_select(class="form-select form-select-sm form-control w-25") }}
+            <div class="mx-1"></div>
+            {{ form.submit(class="btn btn-dark btn-sm d-inline-block")}}
+          </div>
+        </form>
+      </div> 
+      
       <div class="card text-center">
         <div class="card-header">
           <h5 class="text-center">Registro de Mascotas</h5>

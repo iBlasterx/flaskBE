@@ -38,8 +38,9 @@ def home():
 @login_required
 def registro():
     form = OrdenarRegistro()
+    buscar = SearchForm()
     clientes = list(clientes_collection.find())
-    return render_template("registro.html", clientes=clientes, form=form)
+    return render_template("registro.html", clientes=clientes, form=form, buscar=buscar)
     
 @app.route('/ordenar_registro/', methods=['GET', 'POST'])
 def ordenar_registro():
@@ -106,11 +107,11 @@ def editar_cliente(id):
     
 @app.route("/busqueda/", methods=['GET', 'POST'])
 def busqueda():
-    form = SearchForm()
+    buscar = SearchForm()
     resultados = []
-    if form.validate_on_submit():
-        term_busqueda = form.term_busqueda.data
-        busqueda_select = form.busqueda_select.data
+    if buscar.validate_on_submit():
+        term_busqueda = buscar.term_busqueda.data
+        busqueda_select = buscar.busqueda_select.data
         if busqueda_select == 'nombre':
             resultados = clientes_collection.find({'nombre': {'$regex': term_busqueda}})
         if busqueda_select == 'dni':
@@ -123,7 +124,7 @@ def busqueda():
             resultados = clientes_collection.find({'tipo': {'$regex': term_busqueda}})
         elif busqueda_select == 'raza':
             resultados = clientes_collection.find({'raza': {'$regex': term_busqueda}})
-    return render_template('busqueda.html', form=form, resultados=resultados)
+    return render_template('busqueda.html', buscar=buscar, resultados=resultados)
 
 # Testing
 @app.route("/nuevo_registro_test/", methods=['GET', 'POST'])

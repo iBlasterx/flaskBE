@@ -5,9 +5,9 @@
     <div class="container text-center">
       <h3 class="mx-auto my-4">Búsqueda en Registro</h3>
       <form action="/busqueda" method="POST" class="form-inline mx-auto">
-        {{ form.csrf_token }}
-        {{ form.term_busqueda(placeholder="Ingrese el valor a buscar", class="form-control w-50 mx-auto") }}
-        {{ form.busqueda_select(class="form-select my-3 w-50 mx-auto") }}
+        {{ buscar.csrf_token }}
+        {{ buscar.term_busqueda(placeholder="Ingrese el valor a buscar", class="form-control w-50 mx-auto") }}
+        {{ buscar.busqueda_select(class="form-select my-3 w-50 mx-auto") }}
         <input type="submit" value="Buscar" class="btn btn-lg btn-success">
       </form>
 
@@ -22,18 +22,27 @@
               <th class="h6" scope="col">Nacimiento</th>
               <th class="h6" scope="col">Tipo</th>
               <th class="h6" scope="col">Raza</th>
+              <th class="h6" scope="col">Acción</th>
             </tr>
           </thead>
           <tbody>
             {% for resultado in resultados %}
-              <tr>
-                <td>{{ resultado.nombre }}</td>
-                <td>{{ resultado.dni }}</td>
-                <td>{{ resultado.mascota }}</td>
-                <td>{{ resultado.fecha_nacimiento }}</td>
-                <td>{{ resultado.tipo }}</td>
-                <td>{{ resultado.raza }}</td>
-              </tr>
+            <tr>
+              <form method="post" action="{{ url_for('editar_cliente', id=resultado['_id']) }}" id="formulario">
+              <td><input class="form-control" type="text" value="{{resultado.nombre}}" name="nombre" id="nombre" disabled></td>
+              <td><input class="form-control" type="text" value="{{resultado.dni}}" name="dni" id="dni" disabled></td>
+              <td><input class="form-control" type="text" value="{{resultado.mascota}}" name="mascota" id="mascota" disabled></td>
+              <td><input class="form-control" type="date" value="{{resultado.fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" disabled></td>
+              <td><input class="form-control" type="text" value="{{resultado.tipo}}" name="tipo" id="tipo" disabled></td>
+              <td><input class="form-control" type="text" value="{{resultado.raza}}" name="raza" id="raza" disabled></td>
+              <td>
+                <button class="btn btn-primary btn-sm mt-3" id="editar" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Editar</button>
+                <button  class="btn btn-success btn-sm mt-3" id="guardar" type="submit" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; display: none">Guardar</button>
+                <a href="{{ url_for('borrar_cliente', id=resultado['_id']) }}" class="btn btn-danger btn-sm mt-3" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" formmethod="POST">Eliminar</a>
+              </td>
+            </form>
+            </tr>
+
               {% else %}
                 <td colspan="7" class="text-center">No se encontró información: intente de nuevo con otro valor.</td>
             {% endfor %}
