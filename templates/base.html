@@ -18,48 +18,48 @@
   </head>
 
   <div class="d-flex flex-column" style="min-height: 80vh;">
-  <main>
-    <header>
-      <section>
-        <a class="navbar-brand" href="../">
-          <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
-        </a>
-        <label for="toggle-1" class="toggle-menu">
-          <ul>
-            <li></li> 
-            <li></li> 
-            <li></li>
-          </ul>
-        </label>
-        <nav>
-          <ul>
-            <li>
-              <a href="../registro/"><i class="icon-thumbs-up-alt"></i>Registro Mascotas</a>
-            </li>
-            <li>
-              <a href="../nuevo_registro/"><i class="icon-thumbs-up-alt"></i>Nuevo Registro</a>
-            </li>
-            <li>
-              <a href="../busqueda/"><i class="icon-thumbs-up-alt"></i>Búsqueda</a>
-            </li>
-            <li>
-              <a href="../auth/signup"><i class="icon-thumbs-up-alt"></i>Crear Usuario</a>
-            </li>
-            {% if current_user.is_authenticated %}
-              <li>Bienvenido, {{ current_user.username }}</li>
-              <a href="{{ url_for('auth_bp.logout') }}">Cerrar sesión</a>
-            {% else %}
+    <main>
+      <header>
+        <section>
+          <a class="navbar-brand" href="../">
+            <img src="https://i.ibb.co/txq16pT/1111.png" alt="Logo">
+          </a>
+          <label for="toggle-1" class="toggle-menu">
+            <ul>
+              <li></li> 
+              <li></li> 
+              <li></li>
+            </ul>
+          </label>
+          <nav>
+            <ul>
               <li>
-                <i class="icon-thumbs-up-alt"></i><a href="{{ url_for('auth_bp.login') }}">Login</a>
+                <a href="../registro/"><i class="icon-thumbs-up-alt"></i>Registro Mascotas</a>
               </li>
-            {% endif %}
-          </ul>
-        </nav>
-      </section>
-    </header>
-    {% block main %}
-    {% endblock %}
-  </main>
+              <li>
+                <a href="../nuevo_registro/"><i class="icon-thumbs-up-alt"></i>Nuevo Registro</a>
+              </li>
+              <li>
+                <a href="../busqueda/"><i class="icon-thumbs-up-alt"></i>Búsqueda</a>
+              </li>
+              <li>
+                <a href="../auth/signup"><i class="icon-thumbs-up-alt"></i>Crear Usuario</a>
+              </li>
+              {% if current_user.is_authenticated %}
+                <li>Bienvenido, {{ current_user.username }}</li>
+                <a href="{{ url_for('auth_bp.logout') }}">Cerrar sesión</a>
+              {% else %}
+                <li>
+                  <i class="icon-thumbs-up-alt"></i><a href="{{ url_for('auth_bp.login') }}">Login</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </section>
+      </header>
+      {% block main %}
+      {% endblock %}
+    </main>
   </div>
 
   <footer class="bg-secondary text-white py-5">

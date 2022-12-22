@@ -57,17 +57,17 @@ def ordenar_registro():
 def nuevo():
     return render_template("nuevo_registro.html")
 
-@app.route("/agregar/", methods=("POST",))
+@app.route("/agregar/", methods=["POST",])
 def agregar():
     if request.method == "POST":
         clientes_collection.insert_one(
                 {
-                "nombre": request.form["nombre"],
+                "nombre": request.form["nombre"].title(),
                 "dni": request.form["dni"],
-                "mascota" : request.form["mascota"],
+                "mascota" : request.form["mascota"].capitalize(),
                 "fecha_nacimiento":  request.form["fecha_nacimiento"],
-                "tipo" : request.form["tipo"],
-                "raza" : request.form["raza"],
+                "tipo" : request.form["tipo"].capitalize(),
+                "raza" : request.form["raza"].capitalize(),
                 }
             )
         flash("¡Registro creado con éxito!")
@@ -75,14 +75,14 @@ def agregar():
     else:
         return notFound()
 
-@app.route("/clientes/<id>/borrar", methods=("GET", "POST"))
+@app.route("/clientes/<id>/borrar", methods=['GET', 'POST'])
 @login_required
 def borrar_cliente(id):
     clientes_collection.delete_one({"_id": ObjectId(id)})
     flash("Registro eliminado.")
     return redirect(url_for("registro"))
 
-@app.route("/clientes/<id>/editar", methods=("POST",))
+@app.route("/clientes/<id>/editar", methods=["POST",])
 @login_required
 def editar_cliente(id):
     clientes_collection.find_one({"_id": ObjectId(id)})
@@ -91,12 +91,12 @@ def editar_cliente(id):
             {"_id": ObjectId(id)},
                 {
                     "$set": {
-                        "nombre": request.form["nombre"],
+                        "nombre": request.form["nombre"].title(),
                         "dni": request.form["dni"],
-                        "mascota" : request.form["mascota"],
+                        "mascota" : request.form["mascota"].capitalize(),
                         "fecha_nacimiento":  request.form["fecha_nacimiento"],
-                        "tipo" : request.form["tipo"],
-                        "raza" : request.form["raza"],
+                        "tipo" : request.form["tipo"].capitalize(),
+                        "raza" : request.form["raza"].capitalize(),
                     }
                 },
         )
@@ -110,7 +110,7 @@ def busqueda():
     buscar = SearchForm()
     resultados = []
     if buscar.validate_on_submit():
-        term_busqueda = buscar.term_busqueda.data
+        term_busqueda = buscar.term_busqueda.data.capitalize()
         busqueda_select = buscar.busqueda_select.data
         if busqueda_select == 'nombre':
             resultados = clientes_collection.find({'nombre': {'$regex': term_busqueda}})
@@ -124,6 +124,8 @@ def busqueda():
             resultados = clientes_collection.find({'tipo': {'$regex': term_busqueda}})
         elif busqueda_select == 'raza':
             resultados = clientes_collection.find({'raza': {'$regex': term_busqueda}})
+        buscar.term_busqueda.data = ""
+        buscar.busqueda_select.data = ""
     return render_template('busqueda.html', buscar=buscar, resultados=resultados)
 
 # Testing
