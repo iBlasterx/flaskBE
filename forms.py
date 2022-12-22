@@ -15,12 +15,12 @@ class RegistroVeterinaria(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
-    submit = SubmitField('Enviar')
+    submit = SubmitField('Ingresar')
 
 class SignupForm(FlaskForm):
     username = StringField('Nombre de usuario', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
-    submit = SubmitField('Enviar')
+    submit = SubmitField('Registrar')
 
 class SearchForm(FlaskForm):
     term_busqueda = StringField('Ingrese valor', validators=[DataRequired()])
