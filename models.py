@@ -13,3 +13,9 @@ class Users(UserMixin, Document):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+users_query = Users.objects
+
+if users_query.count() == 0:
+    user = Users(username="admin", password_hash=generate_password_hash("admin"))
+    user.save()

@@ -15,6 +15,7 @@ app.config.from_object(Config)
 client = MongoClient('localhost', 27017)
 db = client["veterinaria"]
 clientes_collection = db["clientes"]
+users = db["users"]
 
 csrf = CSRFProtect()
 login_manager = LoginManager()
@@ -27,10 +28,11 @@ def load_user(user_id):
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
-    flash("Necesitas iniciar sesión para hacer eso.")
+    flash("Necesitas iniciar sesión.")
     return redirect(url_for('auth_bp.login'))
 
 @app.route("/")
+@login_required
 def home():
     return render_template("index.html")
 
@@ -151,7 +153,7 @@ def agregar2():
                         "raza" : raza,
                     }
             )
-    return render_template("guardar.html", form=form)
+    return render_template("test_guardar.html", form=form)
 
 @app.errorhandler(404)
 def notFound(error = None):

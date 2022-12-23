@@ -17,6 +17,9 @@ window.onload = function() {
             this.style.display = "none";
         });
     });
+
+    var hoy = new Date();
+    document.querySelector('input[type="date"]').max = hoy.toISOString().split("T")[0];
 }
 
 function ordenarRegistro() {

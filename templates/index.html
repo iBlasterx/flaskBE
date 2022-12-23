@@ -7,8 +7,79 @@
         {{ message }}
     </div>
     {% endfor %}
-    <section>
-        <h2>Bienvenido al Sistema de Registro Veterinario</h2>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h2 class="jumbotron-heading">Bienvenido al Sistema de Registro Veterinario</h2>
+            <p class="lead text muted">
+                Elija las opciones que el sistema le brinda. 
+                Si necesita mayor información u ocurre algún 
+                problema, no dude en contactar con soporte.
+            </p>
+            
+        </div>
     </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 box shadow">
+                        <img class="card-img-top" 
+                        style="height: 225px; width: 100%; display: block;" 
+                        src="http://agnitio.pe/wp-content/uploads/2019/11/maxresdefault.jpg" data-holder-rendered="true">
+                        <div class="card-body">
+                            <h4 class="cardtext">
+                                Listar Registro 
+                            </h4>
+                            <p class="card-text">
+                                Para obtener el registro completo de clientes, ingrese al registro completo del sistema. Podrá editar, borrar y ordenar a criterio personal.
+                            </p>
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                <a href="../registro/">Ingresar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4 box shadow">
+                        <img class="card-img-top" 
+                        style="height: 225px; width: 100%; display: block;" 
+                        src="https://i0.wp.com/www.fanmascotas.com/wp-content/uploads/2018/05/tenencia-responsable-1.png?fit=640%2C384&ssl=1" data-holder-rendered="true">
+                        <div class="card-body">
+                            <h4 class="cardtext">
+                                Nuevo Registro
+                            </h4>
+                            <p class="card-text">
+                                Si desea añadir un nuevo cliente al sistema, puede hacerlo desde el formulario de registro. Es importante introducir lo solicitado.
+                            </p>
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                <a href="../nuevo_registro/">Ingresar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4 box shadow">
+                        <img class="card-img-top" 
+                        style="height: 225px; width: 100%; display: block;" 
+                        src="https://i.ytimg.com/vi/wnjS5zbb43Y/maxresdefault.jpg" data-holder-rendered="true">
+                        <div class="card-body">
+                            <h4 class="cardtext">
+                                Búsqueda de Cliente 
+                            </h4>
+                            <p class="card-text">
+                                Para encontrar un cliente o mascota en específico, puede hacerlo desde el buscador para facilitarle el proceso. Desde aquí, también podrá editar o borrar.
+                            </p>
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                <a href="../busqueda/">Ingresar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

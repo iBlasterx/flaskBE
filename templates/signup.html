@@ -11,8 +11,9 @@
       {% endfor %}
 
         <h3>Crear nuevo usuario</h3>
+        Puede crear nuevo logins para que otros usuarios puedan acceder al sistema.
 
-        <div class="container text-center my-4">
+        <div class="container text-center my-5">
         <form method="POST" class="form-inline mx-auto">
           {{ form.hidden_tag() }}
 
@@ -33,7 +34,7 @@
             
           <div class="d-flex justify-content-center align-items-center mx-auto">    
             <div class="text-center text-lg-start mt-1 pt-1">
-                {{ form.submit(class="btn btn-lg btn-success", style="padding-left: 2.5rem; padding-right: 2.5rem;") }}
+                {{ form.submit(class="btn btn-lg btn-secondary", style="padding-left: 2.5rem; padding-right: 2.5rem;") }}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ def signup():
     if request.method == 'POST' and form.validate_on_submit():
         existing_user = Users.objects(username=form.username.data).first()
         if existing_user is None:
-            user = Users(username=form.username.data.lower())
+            user = Users(username=form.username.data)
             user.set_password(form.password.data)
             user.save()
             flash("Usuario registrado con éxito")
